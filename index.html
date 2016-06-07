@@ -1,8 +1,30 @@
-<html>
-<head>
-<title>Royal</title>
+<!DOCTYPE html>
+<html ng-app="satishApp">
+<head lang="en">
+	<meta charset="utf-8">
+	<title>My App Creation</title>
 </head>
 <body>
-<b>Royal challengers Bangalore</b>
+	<nav class="navbar navbar-default">
+		 <div class="row">
+			<div class="col-md-6 text-left">
+				<h4>AngularJS Tutorial</h4>
+			</div>
+			<div class="col-md-6 text-right">
+				<a href="#/home">Home</a>
+				<a href="#/iamadmin">Blog</a>
+				<a href="#/questions">Questions</a>
+			</div>
+		</div>
+	</nav>
+	
+	<div>
+		<ng-view></ng-view>
+	</div>
+
+	<script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/angularjs/1.2.28/angular.min.js"></script>
+    <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/angularjs/1.2.28//angular-route.min.js"></script>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css"></style> 
+    <script src="js/app.js"></script>
 </body>
 </html>
