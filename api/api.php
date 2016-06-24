@@ -1,32 +1,32 @@
 <?php
-
-	$con = mysql_connect("localhost","root","");
-	if (!$con)
+	print_r("i am here");
+	$con = mysqli_connect("localhost","root", "", "rcb");
+	if (mysqli_connect_errno())
 	{
-		die('Could not connect: ' . mysql_error());
+	echo "Failed to connect to MySQL: " . mysqli_connect_error();
 	}
 
-	mysql_select_db("rcb", $con);
 
 	$data = json_decode(file_get_contents("php://input"));
 	$username = $data->username;
  	$password = $data->password;
+ 	echo $username;
+ 	print_r($data);
 
- 	$sql = "select COUNT(*) as cnt,username from admin where username='".$username."' AND password='".$password."'";
- 	// mysql_query->execute($sql, $con);
- 	// mysql_query($sql);
- 	print_r(mysql_query($sql));
- 	// mysql_query($sql,$con);
-
- 	// print_r($row->username); die;
- 	if (!$row)
+ 	$query = "SELECT usertype FROM `admin` WHERE username = '".$username."' AND password = '".$password."'";
+ 	// $query = "select COUNT(*) as cnt,username from admin where username='".$username."' AND password='".$password."'";
+ 	$row = mysqli_query($con, $query);
+ 	$res = mysqli_fetch_object($row);
+ 	// print_r($row);
+ 	print_r($res);
+ 	if (!$res)
 	{
 
 	  die('Error: ' . mysql_error());
 
 	}else{	
 
-		print_r($data);
+		print_r(json_encode($res));
 
 	}
 

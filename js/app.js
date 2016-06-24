@@ -43,11 +43,11 @@ app.controller('adminLogin', function ($scope, $http, $location){
 			console.error(error);
 		});
 
-		if( $scope.username == data.username && $scope.password == data.password ){
-			console.log(data.username);
-			console.log("logged in");
-			$location.path("adminpanel");
-		}
+		// if( $scope.username == data.username && $scope.password == data.password ){
+		// 	console.log(data.username);
+		// 	console.log("logged in");
+		// 	$location.path("adminpanel");
+		// }
 	};
 
 });
