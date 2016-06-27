@@ -33,7 +33,8 @@ app.controller('adminLogin', function ($scope, $http, $location){
 
 		var data = {
 			username: $scope.login.email,
-			password: $scope.login.password
+			password: $scope.login.password,
+			type: "getAdmin"
 		}
 
 		$http.post("api/api.php", data).success(function(responce){
