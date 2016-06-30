@@ -26,8 +26,8 @@ app.controller('homeController', function ($scope){
 
 app.controller('adminLogin', function ($scope, $http, $location){
 
-	$scope.username = "iamsatishb@gmail.com";
-	$scope.password = "satish";
+	// $scope.username = "iamsatishb@gmail.com";
+	// $scope.password = "satish";
 	
 	$scope.adminLogin = function(){
 
@@ -38,6 +38,9 @@ app.controller('adminLogin', function ($scope, $http, $location){
 		}
 
 		$http.post("api/api.php", data).success(function(responce){
+			if(responce == 1){
+				windows.
+			}
 			console.log(responce);
 			console.log("clear");
 		}).error(function(error){

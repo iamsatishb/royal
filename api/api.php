@@ -1,24 +1,50 @@
 <?php
 
-
 class api
 {
-	function __construct(){
-		$data = json_decode(file_get_contents("php://input"));
-		$type = $data->type; 
-		// print_r($type);
+	public $data = "";
+		
+	const DB_SERVER = "127.0.0.1";
+	const DB_USER = "root";
+	const DB_PASSWORD = "";
+	const DB = "rcb";
 
-		$this->$type();
-		
-		
-		print_r($type);
+	private $db = NULL;
+	private $mysqli = NULL;
+
+	function __construct(){
+		// This connect db 
+		$this->dbConnect();
+		// get post data which sent from $http service
+		$data = json_decode(file_get_contents("php://input"));
+		// assigning function name to the variable
+		$type = $data->type; 
+		// call required function
+		$this->$type($data);
 	}
 
-	function getAdmin(){
-		echo "inside class and function";
+	private function dbConnect(){
+		$this->mysqli = new mysqli(self::DB_SERVER, self::DB_USER, self::DB_PASSWORD, self::DB);
+	}
+
+	function getAdmin($data){
+
+		$username = $data->username;
+		$password = $data->password;
+		
+		$query = "SELECT COUNT(*) as cnt FROM `admin` WHERE username = '".$username."' AND password = '".$password."'";
+		$row = $this->mysqli->query($query);
+		$res = mysqli_fetch_assoc($row);
+		print_r($res['cnt']);
+		if($res['cnt'] > 0){
+			print_r(json_encode($res));
+		}else{
+			die('Error: ' . mysql_error());
+		}
+		
 	}
 }
-print_r("i am here");
+
 $api = new api();
 // $api->getAdmin();
 
